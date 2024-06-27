@@ -1,11 +1,13 @@
-import 'dart:convert';
+// main.dart
 
+import 'dart:convert';
 import 'package:chef_ai/database_helper.dart';
 import 'package:flutter/material.dart';
 import 'add_item_page.dart';
 import 'view_fridge_page.dart';
 import 'meal_plan_generator.dart';
 import 'item_model.dart';
+import 'recipe_page.dart'; // Import the RecipePage
 
 void main() => runApp(MyApp());
 
@@ -99,22 +101,35 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 ElevatedButton(
                   onPressed: () async {
                     final dbHelper = DatabaseHelper();
-                    final itemsMapList = await dbHelper.getItems(); // Fetch items as Map<String, dynamic>
+                    final itemsMapList = await dbHelper.getItems(); // Fetch items as Map<String, dynamic>                
 
                     // Convert Map<String, dynamic> items to List<Item>
-                    final items = itemsMapList.map((itemMap) => Item.fromMap(itemMap)).toList();
+                    final items = itemsMapList.map((itemMap) => Item.fromMap(itemMap)).toList();                
 
-                    final ingredients = items.map((item) => item.name).join(', ');
+                    // Extract ingredient names as a list of strings
+                    final ingredients = items.map((item) => item.name).toList();                
 
                     try {
-                      final mealPlan = await generateMealPlan(ingredients, items);
-                      print(jsonEncode(mealPlan)); // Print JSON response (for debugging)
+                      final mealPlanString = await generateMealPlan(ingredients, items);
+                        // Assuming generateMealPlan returns a JSON string
+
+                        // Parse the JSON string into a Map<String, dynamic>
+                        final mealPlanMap = jsonDecode(mealPlanString!);
+
+                        // Navigate to RecipePage and pass the parsed meal plan
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RecipePage(mealPlan: mealPlanMap),
+                          ),
+                        );
                     } catch (e) {
                       print('Failed to generate meal plan: $e');
                     }
                   },
-                  child: Text('Get cooking'),
+                  child: const Text('Get Cooking'),
                 ),
+
               ],
             ),
           ),
