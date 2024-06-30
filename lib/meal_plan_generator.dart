@@ -32,5 +32,5 @@ Future<String?> generateMealPlan(List<String> ingredients, List<Item> items, sel
 // Function to retrieve the API key securely (replace with your implementation)
 String getApiKey() {
   // Implement logic to retrieve the API key from a secure source (e.g., environment variable)
-  return "AIzaSyBopyknj48SQwZYsjri-r8HyDJ6ZabLKMc"; // Replace with placeholder
+  return "API_KEY"; // Replace with placeholder
 }
