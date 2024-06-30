@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   sqflite: ^2.3.2
   google_generative_ai: ^0.4.3
+  googleapis: ^13.1.0
 
 dev_dependencies:
   flutter_test:

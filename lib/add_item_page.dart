@@ -97,7 +97,7 @@ class _AddItemPageState extends State<AddItemPage> {
               DropdownButtonFormField<String>( //select amount from grams or ml (maybe add US units later)
                 value: _unit,
                 decoration: InputDecoration(labelText: 'Unit'),
-                items: ['grams', 'ml'].map((String unit) {
+                items: ['grams', 'ml','oz','lb'].map((String unit) {
                   return DropdownMenuItem<String>(
                     value: unit,
                     child: Text(unit),
