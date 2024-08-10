@@ -38,6 +38,7 @@ dependencies:
   sqflite: ^2.3.2
   google_generative_ai: ^0.4.3
   googleapis: ^13.1.0
+  internet_connection_checker_plus: ^2.5.1
 
 dev_dependencies:
   flutter_test:

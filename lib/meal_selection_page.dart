@@ -36,6 +36,12 @@ class MealSelectionPage extends StatelessWidget {
               },
               child: Text('Snack'),
             ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context, 'Barbecue');
+              },
+              child: Text('Barbecue'),
+            ),
           ],
         ),
       ),
